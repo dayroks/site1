@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>DEEVDEV</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Montserrat:wght@500;600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#101010; --card:#1e1e1e; --ph:#3a3a3a; --white:#fff; --ink:#000;
+  --purple:#a31fff; --red:#b00000; --muted:#c9c9c9;
+  --head:"Montserrat","Segoe UI",Arial,sans-serif; --body:"Inter","Segoe UI",Arial,sans-serif;
+  box-sizing:border-box; padding-bottom:env(safe-area-inset-bottom,0px);
+}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--white);font-family:var(--body);overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:rgba(16,16,16,.85);z-index:30}
+
+/* header */
+header{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:20;display:flex;align-items:center;justify-content:center;gap:clamp(14px,5vw,64px);padding:14px 16px;background:linear-gradient(#101010e6,#10101000)}
+nav{display:flex;gap:clamp(14px,5vw,64px)}
+nav a{color:var(--white);text-decoration:none;font:600 clamp(13px,3.4vw,17px)/1 var(--head);padding:6px 2px}
+nav a:hover{color:#d9a6ff}
+a:focus-visible,button:focus-visible{outline:2px solid #d9a6ff;outline-offset:3px;border-radius:8px}
+.lang{display:flex;gap:4px;padding:4px;border-radius:999px;background:#ffffff1a;backdrop-filter:blur(8px)}
+.lang button{all:unset;cursor:pointer;width:30px;height:22px;border-radius:999px;display:grid;place-items:center;opacity:.5;transition:opacity .2s,background .2s}
+.lang button[aria-pressed="true"]{opacity:1;background:#ffffff33}
+.lang svg{width:20px;height:14px;border-radius:3px;display:block}
+
+/* hero */
+.hero{position:relative;min-height:640px;display:grid;place-content:center;text-align:center;padding:120px 20px 150px;
+  background:
+   radial-gradient(circle at 78% 20%,#4a0f6b66 0,transparent 16%),
+   radial-gradient(circle at 64% 62%,#0f3a8f 0,#0f2a6a55 14%,transparent 32%),
+   radial-gradient(circle at 0% 22%,#4a1010 0,transparent 36%),var(--bg)}
+.hero h1{margin:0;font:800 clamp(54px,17vw,140px)/1 var(--head);letter-spacing:.01em}
+.hero p{margin:10px 0 0;font:400 clamp(16px,4vw,22px)/1.3 var(--body)}
+
+/* torn edges */
+.edge{display:block;width:100%;height:clamp(60px,12vw,110px);margin:-1px 0}
+.edge.flip{transform:scaleY(-1)}
+.edge path{fill:#fff}
+.about{position:relative;background:#fff;color:var(--ink);padding:40px 20px 70px;margin:-1px 0;overflow:hidden}
+.about h2{margin:0 0 56px;text-align:center;font:800 clamp(40px,10vw,76px)/1 var(--head);text-shadow:0 16px 14px #0000008c}
+.about .txt{max-width:460px;margin:0 auto;font:400 clamp(15px,2.6vw,17px)/1.28 var(--body)}
+.about .txt p{margin:0}
+.tag{margin:80px 0 20px;text-align:center;font:800 clamp(20px,5.2vw,28px)/1.2 var(--head);color:var(--purple);text-shadow:0 18px 16px #a31fff66}
+
+/* floating balls */
+.b{position:absolute;border-radius:50%;pointer-events:none;animation:fl 9s ease-in-out infinite}
+.b.p{background:radial-gradient(circle at 40% 35%,#c24dff,#a31fff);box-shadow:0 14px 22px #a31fff55}
+.b.k{background:#000;box-shadow:-12px 16px 24px #0000008a}
+.b.r{background:radial-gradient(circle at 40% 35%,#c40000,#8f0000);box-shadow:0 12px 24px #b0000066}
+.b.w{background:#fff;box-shadow:0 10px 22px #ffffff40}
+@keyframes fl{50%{transform:translateY(-12px)}}
+@media (prefers-reduced-motion:reduce){.b{animation:none}html{scroll-behavior:auto}}
+
+/* projects */
+.projects{position:relative;padding:50px 20px 100px;overflow:hidden}
+.projects h2,.contact h2{position:relative;margin:0 0 60px;text-align:center;font:800 clamp(44px,11vw,84px)/1.1 var(--head)}
+.cards{position:relative;max-width:760px;margin:0 auto;display:grid;gap:56px}
+.card{display:grid;grid-template-columns:minmax(110px,38%) 1fr;gap:clamp(14px,4vw,40px);align-items:center;padding:clamp(14px,3vw,24px);border-radius:clamp(32px,7vw,56px);background:var(--card);box-shadow:0 22px 34px -12px #b0000080}
+.ph{aspect-ratio:1/.85;border-radius:clamp(24px,6vw,48px);background:var(--ph)}
+.card h3{margin:0 0 14px;text-align:center;font:800 clamp(24px,6vw,44px)/1 var(--head)}
+.card p{margin:0 auto;max-width:22ch;font:400 clamp(14px,2.6vw,18px)/1.3 var(--head);color:#ececec}
+
+/* contact */
+.contact{position:relative;padding:40px 20px 90px;overflow:hidden;background:radial-gradient(circle at 50% 100%,#2d0a4d 0,transparent 55%)}
+.lead{position:relative;max-width:520px;margin:-30px auto 44px;text-align:center;font:400 17px/1.45 var(--body);color:var(--muted)}
+.links{position:relative;max-width:760px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.links a{display:flex;align-items:center;gap:16px;padding:18px 22px;border-radius:32px;background:var(--card);color:#fff;text-decoration:none;box-shadow:0 18px 30px -14px #a31fff80;transition:transform .2s,box-shadow .2s}
+.links a:hover{transform:translateY(-4px);box-shadow:0 24px 34px -14px #a31fffb0}
+.ic{flex:none;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 40% 35%,#c24dff,#a31fff)}
+.ic svg{width:22px;height:22px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.links small{display:block;font:500 13px/1.2 var(--body);color:#a8a8a8;margin-bottom:3px}
+.links b{font:600 16px/1.2 var(--head);overflow-wrap:anywhere}
+footer{padding:26px 20px calc(26px + env(safe-area-inset-bottom,0px));text-align:center;font:400 14px var(--body);color:#8c8c8c;background:#0a0a0a}
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="#home" data-i18n="nav_home">Головна</a>
+    <a href="#about" data-i18n="nav_about">Про мене</a>
+    <a href="#projects" data-i18n="nav_projects">Проєкти</a>
+    <a href="#contact" data-i18n="nav_contact">Контакти</a>
+  </nav>
+  <div class="lang" role="group" aria-label="Language / Мова">
+    <button type="button" data-lang="uk" aria-label="Українська" aria-pressed="true">
+      <svg viewBox="0 0 20 14"><rect width="20" height="7" fill="#0057b7"/><rect y="7" width="20" height="7" fill="#ffd700"/></svg>
+    </button>
+    <button type="button" data-lang="en" aria-label="English" aria-pressed="false">
+      <svg viewBox="0 0 60 42"><rect width="60" height="42" fill="#012169"/><path d="M0 0l60 42M60 0L0 42" stroke="#fff" stroke-width="8"/><path d="M0 0l60 42M60 0L0 42" stroke="#c8102e" stroke-width="3"/><path d="M30 0v42M0 21h60" stroke="#fff" stroke-width="14"/><path d="M30 0v42M0 21h60" stroke="#c8102e" stroke-width="8"/></svg>
+    </button>
+  </div>
+</header>
+
+<section class="hero" id="home">
+  <h1>DEEVDEV</h1>
+  <p data-i18n="role">дизайнер, відеомонтажер, кодер</p>
+</section>
+
+<svg class="edge" data-edge viewBox="0 0 1000 100" preserveAspectRatio="none" aria-hidden="true"><path/></svg>
+<section class="about" id="about">
+  <span class="b p" style="width:110px;height:110px;left:-40px;top:290px"></span>
+  <span class="b k" style="width:130px;height:150px;right:-50px;top:170px;border-radius:50% 0 0 50%"></span>
+  <span class="b p" style="width:70px;height:70px;right:34px;top:420px"></span>
+  <span class="b k" style="width:84px;height:84px;left:48px;bottom:130px"></span>
+  <h2 data-i18n="about_h">ПРО МЕНЕ</h2>
+  <div class="txt">
+    <p data-i18n="about_1">Я мультидисциплінарний цифровий автор: працюю з відеомонтажем, графічним та веб-дизайном і розробкою.</p>
+    <p data-i18n="about_2">Поєдную технічну майстерність із сильним відчуттям візуальної естетики, щоб створювати якісні цифрові рішення. Мої роботи — це чистий дизайн, виразний візуальний контент і функціональні сайти під конкретні цілі.</p>
+    <p data-i18n="about_3">Ціную точність, креативність і постійне вдосконалення, а до кожного проєкту підходжу з увагою до деталей і відданістю якості.</p>
+  </div>
+  <div class="tag" data-i18n="tag">ДИЗАЙН. МОНТАЖ. РОЗРОБКА. СТВОРЕННЯ.</div>
+</section>
+<svg class="edge flip" data-edge viewBox="0 0 1000 100" preserveAspectRatio="none" aria-hidden="true"><path/></svg>
+
+<section class="projects" id="projects">
+  <span class="b r" style="width:76px;height:76px;left:11%;top:80px"></span>
+  <span class="b w" style="width:50px;height:50px;left:74%;top:96px"></span>
+  <span class="b r" style="width:90px;height:140px;left:-30px;top:420px;border-radius:0 50% 50% 0"></span>
+  <span class="b w" style="width:100px;height:100px;right:-34px;top:480px"></span>
+  <span class="b r" style="width:70px;height:70px;left:6%;top:820px"></span>
+  <span class="b w" style="width:66px;height:66px;right:10%;top:760px"></span>
+  <span class="b w" style="width:110px;height:110px;right:-36px;bottom:60px"></span>
+  <span class="b r" style="width:96px;height:96px;left:3%;bottom:50px"></span>
+  <h2 data-i18n="proj_h">Проєкти</h2>
+  <div class="cards">
+    <article class="card"><div class="ph"></div><div><h3 data-i18n="proj_name">Назва</h3><p data-i18n="proj_desc">опис опис опис опис опис опис опис опис</p></div></article>
+    <article class="card"><div class="ph"></div><div><h3 data-i18n="proj_name">Назва</h3><p data-i18n="proj_desc">опис опис опис опис опис опис опис опис</p></div></article>
+    <article class="card"><div class="ph"></div><div><h3 data-i18n="proj_name">Назва</h3><p data-i18n="proj_desc">опис опис опис опис опис опис опис опис</p></div></article>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <span class="b p" style="width:80px;height:80px;left:-24px;top:70px"></span>
+  <span class="b w" style="width:54px;height:54px;right:8%;top:50px"></span>
+  <span class="b r" style="width:70px;height:70px;right:-20px;bottom:40px"></span>
+  <h2 data-i18n="cont_h">Контакти</h2>
+  <p class="lead" data-i18n="cont_lead">Є ідея, відео чи сайт, який треба створити? Напишіть мені — відповім протягом доби.</p>
+  <div class="links">
+    <a href="mailto:hello@deevdev.com"><span class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 8 8 6 8-6"/></svg></span><span><small data-i18n="c_mail">Пошта</small><b>hello@deevdev.com</b></span></a>
+    <a href="https://t.me/deevdev" target="_blank" rel="noopener"><span class="ic"><svg viewBox="0 0 24 24"><path d="M21 4 3 11l5 2 2 6 3-4 5 4z"/><path d="m8 13 9-6"/></svg></span><span><small>Telegram</small><b>@deevdev</b></span></a>
+    <a href="https://instagram.com/deevdev" target="_blank" rel="noopener"><span class="ic"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r=".6"/></svg></span><span><small>Instagram</small><b>@deevdev</b></span></a>
+    <a href="https://github.com/deevdev" target="_blank" rel="noopener"><span class="ic"><svg viewBox="0 0 24 24"><path d="m8 7-5 5 5 5M16 7l5 5-5 5M14 5l-4 14"/></svg></span><span><small>GitHub</small><b>github.com/deevdev</b></span></a>
+  </div>
+</section>
+<footer>© 2026 DEEVDEV</footer>
+
+<script>
+const T={
+ uk:{nav_home:"Головна",nav_about:"Про мене",nav_projects:"Проєкти",nav_contact:"Контакти",role:"дизайнер, відеомонтажер, кодер",about_h:"ПРО МЕНЕ",
+  about_1:"Я мультидисциплінарний цифровий автор: працюю з відеомонтажем, графічним та веб-дизайном і розробкою.",
+  about_2:"Поєдную технічну майстерність із сильним відчуттям візуальної естетики, щоб створювати якісні цифрові рішення. Мої роботи — це чистий дизайн, виразний візуальний контент і функціональні сайти під конкретні цілі.",
+  about_3:"Ціную точність, креативність і постійне вдосконалення, а до кожного проєкту підходжу з увагою до деталей і відданістю якості.",
+  tag:"ДИЗАЙН. МОНТАЖ. РОЗРОБКА. СТВОРЕННЯ.",proj_h:"Проєкти",proj_name:"Назва",proj_desc:"опис опис опис опис опис опис опис опис",
+  cont_h:"Контакти",cont_lead:"Є ідея, відео чи сайт, який треба створити? Напишіть мені — відповім протягом доби.",c_mail:"Пошта"},
+ en:{nav_home:"Home",nav_about:"About me",nav_projects:"Projects",nav_contact:"Contact",role:"a designer, video editor, coder",about_h:"ABOUT ME",
+  about_1:"I am a multidisciplinary digital creator specializing in video editing, graphic design, web design, and development.",
+  about_2:"I combine technical expertise with a strong sense of visual aesthetics to create high-quality digital solutions. My work focuses on delivering clean designs, engaging visual content, and functional websites tailored to specific goals.",
+  about_3:"I value precision, creativity, and continuous improvement, approaching every project with attention to detail and a commitment to quality.",
+  tag:"DESIGN. EDIT. DEVELOP. CREATE.",proj_h:"Projects",proj_name:"Name",proj_desc:"description description description description description description description description",
+  cont_h:"Contact",cont_lead:"Have an idea, a video or a website to build? Write to me — I’ll reply within a day.",c_mail:"Email"}
+};
+function setLang(l){
+  document.documentElement.lang=l;
+  document.querySelectorAll("[data-i18n]").forEach(e=>{const v=T[l][e.dataset.i18n];if(v)e.textContent=v});
+  document.querySelectorAll(".lang button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.lang===l)));
+  try{localStorage.setItem("lang",l)}catch(e){}
+}
+document.querySelectorAll(".lang button").forEach(b=>b.addEventListener("click",()=>setLang(b.dataset.lang)));
+let saved="uk";
+try{saved=localStorage.getItem("lang")||((navigator.language||"").startsWith("uk")?"uk":"en")}catch(e){}
+setLang(T[saved]?saved:"uk");
+
+/* jagged edges */
+document.querySelectorAll("[data-edge]").forEach((svg,i)=>{
+  let s=11+i*37;const r=()=>(s=(s*9301+49297)%233280)/233280;
+  let x=0,d="M0,100 ";
+  while(x<1000){
+    const w=14+r()*30;
+    d+=`L${(x+w*.15).toFixed(1)},${(78+r()*22).toFixed(1)} L${(x+w*.55).toFixed(1)},${(4+r()*52).toFixed(1)} `;
+    x+=w;
+  }
+  svg.querySelector("path").setAttribute("d",d+"L1000,100 Z");
+});
+</script>
+</body>
+</html>
